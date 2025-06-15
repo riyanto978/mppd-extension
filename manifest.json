@@ -16,7 +16,11 @@
         "https://admin.mppdigital.go.id/*"
       ],
       "js": [
-        "content_script.js"
+        "content_script.js",
+        "sweetalert.min.js"
+      ],
+      "css": [
+        "sweetalert.css"
       ]
     }
   ],
