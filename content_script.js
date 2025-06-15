@@ -2,28 +2,32 @@
 (() => {
     chrome.runtime.onMessage.addListener((ob, send, res) => {
 
-        // document.getElementById("btn_perbarui").click()
+        document.getElementById("btn_perbarui").click()
 
         let list_td = document.querySelectorAll("td");
 
         for (let td_index = 0; td_index < list_td.length; td_index++) {
             const element = list_td[td_index];
 
-            // if (element.innerText == "Nama") {
-            //     const nama = list_td[td_index + 2].innerText
+            if (element.innerText == "Nama") {
+                const nama = list_td[td_index + 2].innerText
 
-            //     chrome.runtime.sendMessage({
-            //         message: { type: "nama", value: nama }
-            //     })
-            // }
+                chrome.runtime.sendMessage({
+                    message: { type: "nama", value: nama }
+                })
+            }
 
-            // if (element.innerText == "NIK") {
-            //     const nik = list_td[td_index + 2].innerText
+            if (element.innerText == "NIK") {
+                const nik = list_td[td_index + 2].innerText
 
-            //     chrome.runtime.sendMessage({
-            //         message: { type: "nik", value: nik }
-            //     })
-            // }
+
+
+
+                chrome.runtime.sendMessage({
+                    message: { type: "nik", value: nik }
+                })
+
+            }
 
             if (element.innerText.toLowerCase() == "alamat fasyankes") {
                 const alamat_fasyankes = list_td[td_index + 2].innerText
@@ -73,8 +77,6 @@
                 let tahun2 = tanggal2Dates[2]
                 // let tanggal2 = new Date(tahun2, bulan2, hari2)
 
-
-                console.log(hari2 - hari1, bulan2 - bulan1, tahun2 - tahun1);
 
                 if (!(hari2 - hari1 == 0 && bulan2 - bulan1 == 0 && tahun2 - tahun1 == 5)) {
 
