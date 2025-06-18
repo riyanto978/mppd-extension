@@ -2,9 +2,31 @@ body {
     padding: 16px;
 }
 
-#select-role {
-    padding: 8px;
 
+.content{
+    display: flex;
+    flex-direction: column;
+        width: 200px;
+}
+
+.divider {
+    height: 12px;
+}
+
+#input-role {
+    /* Change the white to any color */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
+
+    margin-top: 8px;
+    margin-bottom: 16px;
+    padding: 8px;
+    border-radius: 12px;
+    padding: 8px 12px;
 }
 
 

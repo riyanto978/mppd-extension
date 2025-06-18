@@ -1,11 +1,12 @@
 {
-  "name": "DOM Reader",
+  "name": "MPPD Generator",
   "version": "1.0",
   "manifest_version": 3,
-  "description": "Reads the content of a page.",
+  "description": "Generate Tabs",
   "permissions": [
     "scripting",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "host_permissions": [
     "https://admin.mppdigital.go.id/*",
@@ -19,7 +20,8 @@
       ],
       "js": [
         "content_script.js",
-        "sweetalert.min.js"
+        "sweetalert.min.js",
+        "dist/moment.js"
       ],
       "css": [
         "sweetalert.css"
@@ -29,10 +31,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
+  "action": {},
   "commands": {
     "do-script": {
       "suggested_key": {

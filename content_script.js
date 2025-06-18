@@ -2,7 +2,10 @@
 (() => {
     chrome.runtime.onMessage.addListener((ob, send, res) => {
 
-        document.getElementById("btn_perbarui").click()
+        // console.log('sjandjandjan');
+
+
+        // document.getElementById("btn_perbarui").click()
 
         let list_td = document.querySelectorAll("td");
 
@@ -19,9 +22,6 @@
 
             if (element.innerText == "NIK") {
                 const nik = list_td[td_index + 2].innerText
-
-
-
 
                 chrome.runtime.sendMessage({
                     message: { type: "nik", value: nik }
@@ -69,17 +69,20 @@
                 let hari1 = tanggal1Dates[0];
                 let bulan1 = months[tanggal1Dates[1]]
                 let tahun1 = tanggal1Dates[2]
-                // let tanggal1 = new Date(tahun1, bulan1, hari1)
+                let tanggal1 = moment(new Date(tahun1, bulan1, hari1))
 
                 let tanggal2Dates = periode_sips[1].split(" ")
                 let hari2 = tanggal2Dates[0];
                 let bulan2 = months[tanggal2Dates[1]]
                 let tahun2 = tanggal2Dates[2]
-                // let tanggal2 = new Date(tahun2, bulan2, hari2)
+                let tanggal2 = moment(new Date(tahun2, bulan2, hari2))
 
 
-                if (!(hari2 - hari1 == 0 && bulan2 - bulan1 == 0 && tahun2 - tahun1 == 5)) {
 
+                let diff = tanggal2.diff(tanggal1, "years", true)
+                console.log(diff);
+
+                if (diff < 5) {
 
                     Swal.fire({
                         title: 'Info',
@@ -93,6 +96,9 @@
         }
 
     })
+
+
+
 })()
 
 
