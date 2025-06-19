@@ -32,6 +32,7 @@
     "service_worker": "background.js"
   },
   "action": {},
+  "options_page": "options_page.html",
   "commands": {
     "do-script": {
       "suggested_key": {

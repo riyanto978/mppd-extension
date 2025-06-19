@@ -116,6 +116,32 @@
                     active: false
                 })
             }
+
+
+            try {
+
+                let res = await chrome.storage.local.get(["role"])
+                let role = res.role ?? "ip"
+                if (siimutTabsId == 0) {
+                    chrome.tabs.create({
+                        url: `https://izin.semarangkota.go.id:7777/index.php?LaporanSearch%5Bno_agenda%5D=&LaporanSearch%5Bstatus_sip%5D=&LaporanSearch%5Btgl_daftar%5D=&LaporanSearch%5Batas_nama%5D=${nama}&LaporanSearch%5Bpemohon_telp%5D=&LaporanSearch%5Bpemohon_telp%5D=&LaporanSearch%5Bnama_sarana%5D=&LaporanSearch%5Blokasi%5D=&LaporanSearch%5Bpemohon_nama%5D=&LaporanSearch%5Bpemohon_alamat%5D=&LaporanSearch%5Bkelurahan%5D=&LaporanSearch%5Bproses_tahapan%5D=&LaporanSearch%5Bno_sk%5D=&LaporanSearch%5Btgl_sk%5D=&LaporanSearch%5Bspm%5D=&LaporanSearch%5Busername%5D=&r=laporan&ijin=${role}`,
+                        active: false
+                    }, (tab) => {
+                        siimutTabsId = tab.id
+
+                        chrome.storage.local.set({ siimutTabsId: tab.id })
+                    })
+
+
+                } else {
+                    chrome.tabs.update(siimutTabsId, {
+                        url: `https://izin.semarangkota.go.id:7777/index.php?LaporanSearch%5Bno_agenda%5D=&LaporanSearch%5Bstatus_sip%5D=&LaporanSearch%5Btgl_daftar%5D=&LaporanSearch%5Batas_nama%5D=${nama}&LaporanSearch%5Bpemohon_telp%5D=&LaporanSearch%5Bpemohon_telp%5D=&LaporanSearch%5Bnama_sarana%5D=&LaporanSearch%5Blokasi%5D=&LaporanSearch%5Bpemohon_nama%5D=&LaporanSearch%5Bpemohon_alamat%5D=&LaporanSearch%5Bkelurahan%5D=&LaporanSearch%5Bproses_tahapan%5D=&LaporanSearch%5Bno_sk%5D=&LaporanSearch%5Btgl_sk%5D=&LaporanSearch%5Bspm%5D=&LaporanSearch%5Busername%5D=&r=laporan&ijin=${role}`,
+                        active: false
+                    })
+                }
+            } catch (error) {
+
+            }
         }
 
 
@@ -123,23 +149,6 @@
 
             let nik = req.message.value
 
-            if (siimutTabsId == 0) {
-                chrome.tabs.create({
-                    url: `https://siimut.semarangkota.go.id/index.php?r=laporan%2Flistdatabynik&nik=${nik}`,
-                    active: false
-                }, (tab) => {
-                    siimutTabsId = tab.id
-
-                    chrome.storage.local.set({ siimutTabsId: tab.id })
-                })
-
-
-            } else {
-                chrome.tabs.update(siimutTabsId, {
-                    url: `https://siimut.semarangkota.go.id/index.php?r=laporan%2Flistdatabynik&nik=${nik}`,
-                    active: false
-                })
-            }
 
             if (sisdmkTabsId == 0) {
                 setTimeout(() => {
